@@ -1,0 +1,80 @@
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+//custom colors: http://mcg.mbitson.com/#!?mcgpalette0=%2313a24b&themename=mcgtheme
+//Also see: https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html#generate-color-palettes 
+//and https://material.io/tools/color/#!/?view.left=0&view.right=1&primary.color=13a24b&secondary.color=3a7efc
+$eflmanangement-primary: (50 : #e3f4e9,
+100 : #b8e3c9,
+200 : #89d1a5,
+300 : #5abe81,
+400 : #36b066,
+500 : #13a24b,
+600 : #119a44,
+700 : #0e903b,
+800 : #0b8633,
+900 : #067523,
+A100 : #a4ffb7,
+A200 : #71ff8e,
+A400 : #3eff66,
+A700 : #25ff52,
+contrast: (50 : #000000,
+100 : #000000,
+200 : #000000,
+300 : #000000,
+400 : #000000,
+500 : #ffffff,
+600 : #ffffff,
+700 : #ffffff,
+800 : #ffffff,
+900 : #ffffff,
+A100 : #000000,
+A200 : #000000,
+A400 : #000000,
+A700 : #000000,
+));
+$eflmanangement-accent: (50 : #e6f0ff,
+100 : #c0daff,
+200 : #97c1ff,
+300 : #6da8ff,
+400 : #4d95ff,
+500 : #2e82ff,
+600 : #297aff,
+700 : #236fff,
+800 : #1d65ff,
+900 : #1252ff,
+A100 : #ffffff,
+A200 : #f9faff,
+A400 : #c6d3ff,
+A700 : #adc0ff,
+contrast: (50 : #000000,
+100 : #000000,
+200 : #000000,
+300 : #000000,
+400 : #000000,
+500 : #ffffff,
+600 : #ffffff,
+700 : #ffffff,
+800 : #ffffff,
+900 : #ffffff,
+A100 : #000000,
+A200 : #000000,
+A400 : #000000,
+A700 : #000000,
+));
+$eflmanagement-app-primary: mat-palette($eflmanangement-primary);
+$eflmanagement-app-accent: mat-palette($eflmanangement-accent, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$eflmanagement-app-warn: mat-palette($mat-red);
+// Create the theme object (a Sass map containing all of the palettes).
+$eflmanagement-app-theme: mat-light-theme($eflmanagement-app-primary, $eflmanagement-app-accent, $eflmanagement-app-warn);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($eflmanagement-app-theme);
