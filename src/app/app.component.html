@@ -1,3 +1,11 @@
-<!-- <app-header></app-header> -->
-<app-navigation></app-navigation>
-<app-footer></app-footer>
+<div fxFlex fxLayout="column">
+  <!-- HEADER -->
+  <app-header></app-header>
+
+  <mat-sidenav-container>
+    <!-- CONTENT -->
+    <mat-sidenav-content class="app-nav-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,3 +1,15 @@
-<p>
-  header works!
-</p>
+<mat-toolbar color="primary" class="mat-elevation-z5">
+  <mat-toolbar-row>
+    <!-- <button mat-icon-button (click)="menuClicked()">
+              <mat-icon>menu</mat-icon>
+            </button> -->
+
+    <span>eco-fab-lab</span>
+
+    <span class="spacer"></span>
+
+    <div *ngIf="!(isAuthenticated$ | async)">
+      <button mat-button (click)="login()">Login</button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
