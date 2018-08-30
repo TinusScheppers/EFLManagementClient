@@ -69,7 +69,7 @@ A400 : #000000,
 A700 : #000000,
 ));
 $eflmanagement-app-primary: mat-palette($eflmanangement-primary);
-$eflmanagement-app-accent: mat-palette($eflmanangement-accent, A200, A100, A400);
+$eflmanagement-app-accent: mat-palette($eflmanangement-accent);
 // The warn palette is optional (defaults to red).
 $eflmanagement-app-warn: mat-palette($mat-red);
 // Create the theme object (a Sass map containing all of the palettes).

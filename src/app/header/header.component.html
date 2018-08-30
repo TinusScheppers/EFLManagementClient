@@ -1,21 +1,25 @@
 <mat-toolbar color="primary" class="mat-elevation-z20">
-  <mat-toolbar-row>
-    <!-- <button mat-icon-button (click)="menuClicked()">
-              <mat-icon>menu</mat-icon>
-            </button> -->
-    <a mat-button routerLink="/landing">
-      <img src="assets/images/logos/leaficon.png" width="30" height="30">
-      <span>eco-fab-lab</span>
-    </a>
-
-    <a mat-button routerLink="/users">
-      <span>Leden</span>
-    </a>
-
-    <span class="spacer"></span>
-
-    <div *ngIf="!(isAuthenticated$ | async)">
-      <button color="accent" mat-button (click)="login()">Login</button>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
+    <mat-toolbar-row>
+      <!-- <button mat-icon-button (click)="menuClicked()">
+                <mat-icon>menu</mat-icon>
+              </button> -->
+      <a mat-button routerLink="/landing">
+        <img src="assets/images/logos/leaficon.png" width="30" height="30">
+        <span>eco-fab-lab</span>
+      </a>
+  
+      <a mat-button routerLink="/users">
+        <span>Leden</span>
+      </a>
+  
+      <span class="spacer"></span>
+  
+      <div *ngIf="!(isAuthenticated$ | async)">
+        <button mat-button (click)="login()">Login</button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  
+  
+  
