@@ -9,13 +9,17 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { AppRoutingModule } from './/app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { UserComponent } from './pages/user/user.component';
+import { LandingComponent } from './pages/landing/landing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    UserComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

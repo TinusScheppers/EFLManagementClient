@@ -2,9 +2,17 @@
   <!-- HEADER -->
   <app-header></app-header>
 
-  <mat-sidenav-container>
+  <mat-sidenav-container class="mat-elevation-z10">
+
+    <mat-toolbar>toolbar</mat-toolbar>
+    <!-- Left side nav -->
+    <mat-sidenav opened mode="side">Start content</mat-sidenav>
+
+    <!-- Right side nav -->
+    <mat-sidenav opened mode="side" position="end">End content</mat-sidenav>
+
     <!-- CONTENT -->
-    <mat-sidenav-content class="app-nav-content">
+    <mat-sidenav-content class="mat-elevation-z5">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
