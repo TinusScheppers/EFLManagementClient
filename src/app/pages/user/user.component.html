@@ -1,3 +1,18 @@
-<p>
-  user works!
-</p>
+<h2>Alle Leden</h2>
+<div>
+  <label>Hero name:
+    <input #heroName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(heroName.value); heroName.value=''">
+    add
+  </button>
+</div>
+<ul class="users">
+  <li *ngFor="let user of users">
+    <!-- <a routerLink="/detail/{{hero.id}}"> -->
+      <span class="badge">id:{{user.userId}} naam:{{user.name}}</span> 
+    <!-- </a> -->
+    <!-- <button class="delete" title="delete hero" (click)="delete(hero)">x</button> -->
+  </li>
+</ul>
