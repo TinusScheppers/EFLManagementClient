@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
+
 import { AppRoutingModule } from './/app-routing.module';
 
 import { CardService, UserService } from './core/services/api.service';
@@ -15,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { UserComponent } from './pages/user/user.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { ShellComponent } from './shell/shell.component';
+import { UsersComponent } from './pages/users/users.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import { ShellComponent } from './shell/shell.component';
     FooterComponent,
     UserComponent,
     LandingComponent,
-    ShellComponent
+    ShellComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { ShellComponent } from './shell/shell.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
+    MatTableModule,
     MatListModule,
     AppRoutingModule,
     HttpClientModule
