@@ -9,17 +9,23 @@ import { UserService, User } from '../../core/services/api.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  users: User[];
-  columnsToDisplay = ['userName'];
-
-  constructor(private userService: UserService) { }
+  
+  constructor() { }
 
   ngOnInit() {
-    this.getUsers();
   }
 
-  getUsers(): void {
-    this.userService.getAll().subscribe(users => this.users = users)
-  }
+  // users: User[];
+  // columnsToDisplay = ['userName', 'userSurname'];
+
+  // constructor(private userService: UserService) { }
+
+  // ngOnInit() {
+  //   this.getUsers();
+  // }
+
+  // getUsers(): void {
+  //   this.userService.getAll().subscribe(users => this.users = users)
+  // }
 
 }

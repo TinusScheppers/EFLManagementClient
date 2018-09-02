@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 
 import { AppRoutingModule } from './/app-routing.module';
 
@@ -18,6 +18,7 @@ import { UserComponent } from './pages/user/user.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { ShellComponent } from './shell/shell.component';
 import { UsersComponent } from './pages/users/users.component';
+import { UserTableComponent } from './core/components/user-table/user-table.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UsersComponent } from './pages/users/users.component';
     UserComponent,
     LandingComponent,
     ShellComponent,
-    UsersComponent
+    UsersComponent,
+    UserTableComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,9 @@ import { UsersComponent } from './pages/users/users.component';
     MatTableModule,
     MatListModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     CardService,
