@@ -3,7 +3,7 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-import { UserService, User } from '../../services/api.service';
+import { User } from '../../services/api.service';
 
 /**
  * Data source for the UserTable view. This class should
@@ -13,8 +13,9 @@ import { UserService, User } from '../../services/api.service';
 export class UserTableDataSource extends DataSource<User> {
   data: User[];
 
-  constructor(private paginator: MatPaginator, private sort: MatSort, private userService: UserService) {
+  constructor(private paginator: MatPaginator, private sort: MatSort, private users: User[]) {
     super();
+    this.data = users;    
   }
 
   /**
@@ -23,8 +24,6 @@ export class UserTableDataSource extends DataSource<User> {
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<User[]> {
-    this.userService.getAll().subscribe(users => this.data = users);
-
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -45,7 +44,7 @@ export class UserTableDataSource extends DataSource<User> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect() { }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
@@ -69,7 +68,7 @@ export class UserTableDataSource extends DataSource<User> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.userId, +b.userId, isAsc);
+        case 'userId': return compare(+a.userId, +b.userId, isAsc);
         default: return 0;
       }
     });

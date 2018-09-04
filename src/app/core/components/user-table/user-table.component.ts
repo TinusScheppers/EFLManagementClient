@@ -13,13 +13,17 @@ export class UserTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: UserTableDataSource;
+  length: number;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['userId', 'name'];
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.dataSource = new UserTableDataSource(this.paginator, this.sort, this.userService);
+    this.userService.getAll().subscribe(users => {
+      this.length = users.length;
+      this.dataSource = new UserTableDataSource(this.paginator, this.sort, users);
+    });
   }
 }
