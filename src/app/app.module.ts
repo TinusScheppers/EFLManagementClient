@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './/app-routing.module';
 
@@ -45,7 +48,10 @@ import { UserTableComponent } from './core/components/user-table/user-table.comp
     AppRoutingModule,
     HttpClientModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatGridListModule,
+    FlexLayoutModule,
+    MatCardModule
   ],
   providers: [
     CardService,

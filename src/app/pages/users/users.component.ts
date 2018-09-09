@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserService, User } from '../../core/services/api.service';
+import { User } from '../../core/services/api.service';
 
 
 @Component({
@@ -9,23 +9,14 @@ import { UserService, User } from '../../core/services/api.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  selectedUserId: Number;
   
   constructor() { }
 
   ngOnInit() {
   }
 
-  // users: User[];
-  // columnsToDisplay = ['userName', 'userSurname'];
-
-  // constructor(private userService: UserService) { }
-
-  // ngOnInit() {
-  //   this.getUsers();
-  // }
-
-  // getUsers(): void {
-  //   this.userService.getAll().subscribe(users => this.users = users)
-  // }
-
+  receiveUser($event){
+    this.selectedUserId = $event;
+  }
 }

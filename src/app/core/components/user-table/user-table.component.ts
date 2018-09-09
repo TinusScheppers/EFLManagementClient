@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { UserTableDataSource } from './user-table-datasource';
 
-import { UserService } from '../../services/api.service';
+import { UserService, User } from '../../services/api.service';
 
 @Component({
   selector: 'app-user-table',
@@ -15,6 +15,8 @@ export class UserTableComponent implements OnInit {
   dataSource: UserTableDataSource;
   length: number;
 
+  @Output() userClickEvent = new EventEmitter<Number>();
+
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['userId', 'name', 'surname'];
 
@@ -26,5 +28,9 @@ export class UserTableComponent implements OnInit {
       //getting data on connect() from datatable is not good place
       this.dataSource = new UserTableDataSource(this.paginator, this.sort, users);
     });
+  }
+
+  sendUser(userId: number) {
+    this.userClickEvent.emit(userId);
   }
 }

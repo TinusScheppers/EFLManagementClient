@@ -1,6 +1,22 @@
-table {
-  width: 80%;
-  //margin: 20px auto;
+table.mat-table {
+  width: 100%;
+}
+
+.table-container {
+  height: 100%;
+  overflow: auto;
+}
+
+//https://github.com/angular/material2/issues/5885
+th {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+mat-paginator{
+  position: sticky;
+  bottom: 0;
 }
 
 tr.mat-row:not(.example-expanded-row):hover {
