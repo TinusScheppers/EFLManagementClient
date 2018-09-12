@@ -2,7 +2,7 @@
   <div class="item item-1" fxFlex="50%">
     <app-user-table (userClickEvent)="receiveUser($event)"></app-user-table>
   </div>
-  <div class="item item-2" fxFlex="50%">
+  <div class="item item-2" fxFlex="50%" *ngIf="selectedUserId">
     <app-user [userId]="selectedUserId"></app-user>
   </div>
 </div> 

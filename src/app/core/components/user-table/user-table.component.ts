@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/cor
 import { MatPaginator, MatSort } from '@angular/material';
 import { UserTableDataSource } from './user-table-datasource';
 
-import { UserService, User } from '../../services/api.service';
+import { UserService } from '../../services/api.service';
 
 @Component({
   selector: 'app-user-table',

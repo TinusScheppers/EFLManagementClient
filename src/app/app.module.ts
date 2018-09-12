@@ -8,10 +8,14 @@ import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/mate
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './/app-routing.module';
 
 import { CardService, UserService } from './core/services/api.service';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './mockdb';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -51,7 +55,9 @@ import { UserTableComponent } from './core/components/user-table/user-table.comp
     MatSortModule,
     MatGridListModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatCheckboxModule
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   providers: [
     CardService,
