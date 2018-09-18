@@ -185,15 +185,11 @@ export class CardService {
         return _observableOf<Card[] | null>(<any>null);
     }
 
-    linkCard(userId: number, cardCode: string | null, id: string): Observable<void> {
-        let url_ = this.baseUrl + "/api/Card/link/{id}?";
+    linkCard(id: number, cardCode: string | null): Observable<Card | null> {
+        let url_ = this.baseUrl + "/api/Card/link/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
-        if (userId === undefined || userId === null)
-            throw new Error("The parameter 'userId' must be defined and cannot be null.");
-        else
-            url_ += "userId=" + encodeURIComponent("" + userId) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(cardCode);
@@ -204,6 +200,7 @@ export class CardService {
             responseType: "blob",
             headers: new HttpHeaders({
                 "Content-Type": "application/json", 
+                "Accept": "application/json"
             })
         };
 
@@ -214,14 +211,14 @@ export class CardService {
                 try {
                     return this.processLinkCard(<any>response_);
                 } catch (e) {
-                    return <Observable<void>><any>_observableThrow(e);
+                    return <Observable<Card | null>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<void>><any>_observableThrow(response_);
+                return <Observable<Card | null>><any>_observableThrow(response_);
         }));
     }
 
-    protected processLinkCard(response: HttpResponseBase): Observable<void> {
+    protected processLinkCard(response: HttpResponseBase): Observable<Card | null> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -230,7 +227,10 @@ export class CardService {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            return _observableOf<void>(<any>null);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? Card.fromJS(resultData200) : <any>null;
+            return _observableOf(result200);
             }));
         } else if (status === 400) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
@@ -241,7 +241,7 @@ export class CardService {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<void>(<any>null);
+        return _observableOf<Card | null>(<any>null);
     }
 }
 

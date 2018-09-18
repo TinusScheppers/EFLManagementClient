@@ -6,6 +6,15 @@
         <a href="mailto:{{user.email}}">{{user.email}}</a>
       </mat-card-subtitle>
     </mat-card-title-group>
-    <mat-checkbox [checked]="isAdmin">Admin</mat-checkbox>
+    <mat-checkbox [checked]="user.isAdmin">{{user.isAdmin}}</mat-checkbox>
+    <mat-list dense>
+      <mat-list-item *ngFor="let card of cards">{{card.cardCode}}
+        <button mat-icon-button (click)="delete(card.cardId)">Delete</button>
+      </mat-list-item>
+    </mat-list>
+    <mat-form-field>
+      <input matInput placeholder="Scan card" #scannedCard>
+    </mat-form-field>
+    <button mat-icon-button (click)="add(scannedCard.value)">Add</button>
   </div>
 </mat-card>

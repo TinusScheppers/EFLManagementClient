@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { UserService, User } from '../../core/services/api.service';
+import { UserService, User, Card, CardService } from '../../core/services/api.service';
 
 @Component({
     selector: 'app-user',
@@ -9,18 +9,30 @@ import { UserService, User } from '../../core/services/api.service';
 })
 export class UserComponent implements OnInit {
     user: User;
-    isAdmin: boolean;
+    cards: Card[];
+    scannedCard: Card;
 
     @Input()
     set userId(userId: number) {
         this.userService.getById(userId).subscribe(user => {
-            this.user = user;
-            this.isAdmin = user.isAdmin;
+            this.user = user;            
         });
+        this.cardService.getAllForUser(userId).subscribe(cards => {
+            //this.cards = cards;
+        })
     }
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService, private cardService: CardService) { }
 
     ngOnInit() {
+    }
+
+    delete(cardId: number) {
+        
+    }
+
+    add(scannedCardCode: string) {
+        this.cardService.linkCard(this.userId, scannedCardCode)
+            .subscribe(newCard => this.cards.push(newCard));
     }
 }
