@@ -14,9 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from './/app-routing.module';
 
 import { CardService, UserService } from './core/services/api.service';
-
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './mockdb';
+import { HubService } from './core/services/hub.service';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -63,7 +61,8 @@ import { UserTableComponent } from './core/components/user-table/user-table.comp
   ],
   providers: [
     CardService,
-    UserService
+    UserService,
+    HubService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { UserService, User, Card, CardService } from '../../core/services/api.service';
+import { HubService } from '../../core/services/hub.service';
+
 
 @Component({
     selector: 'app-user',
@@ -11,28 +13,42 @@ export class UserComponent implements OnInit {
     user: User;
     cards: Card[];
     scannedCard: Card;
+    canSendMessage: Boolean;
+    message: string;
 
     @Input()
     set userId(userId: number) {
         this.userService.getById(userId).subscribe(user => {
-            this.user = user;            
+            this.user = user;
         });
         this.cardService.getAllForUser(userId).subscribe(cards => {
-            //this.cards = cards;
+            this.cards = cards;
         })
     }
 
-    constructor(private userService: UserService, private cardService: CardService) { }
+    constructor(private userService: UserService, private cardService: CardService, private hubService: HubService) {
+        this.subscribeToEvents();  
+    }
 
     ngOnInit() {
     }
 
     delete(cardId: number) {
-        
+
     }
 
     add(scannedCardCode: string) {
-        this.cardService.linkCard(this.userId, scannedCardCode)
+        this.cardService.linkCard(this.user.userId, scannedCardCode)
             .subscribe(newCard => this.cards.push(newCard));
+    }
+
+    private subscribeToEvents(): void {
+        this.hubService.connectionEstablished.subscribe(() => {
+            this.canSendMessage = true;
+        });
+
+        this.hubService.messageReceived.subscribe((message) => {
+            this.message = message;
+        });
     }
 }
