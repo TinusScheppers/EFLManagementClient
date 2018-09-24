@@ -18,12 +18,7 @@ export class UserComponent implements OnInit {
 
     @Input()
     set userId(userId: number) {
-        this.userService.getById(userId).subscribe(user => {
-            this.user = user;
-        });
-        this.cardService.getAllForUser(userId).subscribe(cards => {
-            this.cards = cards;
-        })
+        this.GetUserData(userId);
     }
 
     constructor(private userService: UserService, private cardService: CardService, private hubService: HubService) {
@@ -34,12 +29,24 @@ export class UserComponent implements OnInit {
     }
 
     delete(cardId: number) {
-
+        this.cardService.deleteCard(cardId)
+            .subscribe(() => {
+                this.GetUserData(this.user.userId)
+            });
     }
 
     add(scannedCardCode: string) {
         this.cardService.linkCard(this.user.userId, scannedCardCode)
             .subscribe(newCard => this.cards.push(newCard));
+    }
+
+    private GetUserData(userId: number) {
+        this.userService.getById(userId).subscribe(user => {
+            this.user = user;
+        });
+        this.cardService.getAllForUser(userId).subscribe(cards => {
+            this.cards = cards;
+        })
     }
 
     private subscribeToEvents(): void {

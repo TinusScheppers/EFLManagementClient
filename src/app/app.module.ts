@@ -10,6 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './/app-routing.module';
 
@@ -56,7 +57,8 @@ import { UserTableComponent } from './core/components/user-table/user-table.comp
     FlexLayoutModule,
     MatCardModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   providers: [

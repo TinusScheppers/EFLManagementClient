@@ -1,5 +1,22 @@
-mat-card{
-    height: 80%;
-    width: 80%;
-    margin: 0 auto; 
+mat-card {
+  height: 80%;
+  width: 80%;
+  margin: 6% auto;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mat-list-item-content{
+  display: flex;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.email{
+  text-decoration: none;
+  color: grey;
 }
