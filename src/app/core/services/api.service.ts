@@ -21,7 +21,7 @@ export class CardService {
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
-        this.baseUrl = baseUrl ? baseUrl : "https://localhost:44305";
+        this.baseUrl = baseUrl ? baseUrl : "https://localhost:44305";//"http://192.168.0.165" //"https://localhost:44305";
     }
 
     getAll(): Observable<Card[] | null> {
@@ -352,7 +352,7 @@ export class UserService {
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
-        this.baseUrl = baseUrl ? baseUrl : "https://localhost:44305";
+        this.baseUrl = baseUrl ? baseUrl : "https://localhost:44305"; //"http://192.168.0.165" //"https://localhost:44305";
     }
 
     getAll(): Observable<User[] | null> {
