@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { UserService, User, Card, CardService } from '../../core/services/api.service';
-import { HubService } from '../../core/services/hub.service';
+import { UserService, User, Card, CardService } from '../../../core/services/api.service';
+import { HubService } from '../../../core/services/hub.service';
 
 
 @Component({

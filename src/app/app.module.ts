@@ -21,11 +21,12 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { UserComponent } from './pages/user/user.component';
+import { UserComponent } from './core/components/user/user.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { ShellComponent } from './shell/shell.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UserTableComponent } from './core/components/user-table/user-table.component';
+import { PresenceComponent } from './pages/presence/presence.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UserTableComponent } from './core/components/user-table/user-table.comp
     LandingComponent,
     ShellComponent,
     UsersComponent,
-    UserTableComponent
+    UserTableComponent,
+    PresenceComponent
   ],
   imports: [
     BrowserModule,

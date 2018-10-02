@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../../core/services/api.service';
-
 
 @Component({
   selector: 'app-users',
@@ -10,13 +8,13 @@ import { User } from '../../core/services/api.service';
 })
 export class UsersComponent implements OnInit {
   selectedUserId: Number;
-  
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  receiveUser($event){
+  receiveUser($event) {
     this.selectedUserId = $event;
   }
 }
