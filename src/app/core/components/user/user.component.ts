@@ -19,6 +19,8 @@ export class UserComponent implements OnInit {
     @Input()
     set userId(userId: number) {
         this.GetUserData(userId);
+        this.message = '';
+
     }
 
     constructor(private userService: UserService, private cardService: CardService, private hubService: HubService) {

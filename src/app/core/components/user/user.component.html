@@ -1,23 +1,13 @@
 <mat-card>
   <div *ngIf="user">
     <!-- <mat-card-title-group> -->
-      <div class="title">
-        <mat-card-title>{{user.name}} {{user.surname}} </mat-card-title>
-        <mat-checkbox [(ngModel)]="user.isAdmin">{{user.isAdmin}}</mat-checkbox>
-      </div>
-      <mat-card-subtitle>
-        <a class="email" href="mailto:{{user.email}}">{{user.email}}</a>
-      </mat-card-subtitle>
-    <!-- </mat-card-title-group> -->
-
-
-    <!-- <ul class="cards">
-      <li *ngFor="let card of cards">
-        <a> <span class="card"></span> {{card.cardCode}}</a>
-        <button class="delete" (click)="delete(card.cardId)">Delete</button>
-      </li>
-    </ul> -->
-
+    <div class="title">
+      <mat-card-title>{{user.name}} {{user.surname}} </mat-card-title>
+      <mat-checkbox [(ngModel)]="user.isAdmin">{{user.isAdmin}}</mat-checkbox>
+    </div>
+    <mat-card-subtitle>
+      <a class="email" href="mailto:{{user.email}}">{{user.email}}</a>
+    </mat-card-subtitle>
     <mat-list dense class="cards">
       <mat-list-item *ngFor="let card of cards">
         <span>{{card.cardCode}}</span>
