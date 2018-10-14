@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class HubService {
@@ -21,15 +22,15 @@ export class HubService {
 
   private createConnection() {
     this._cardHubConnection = new HubConnectionBuilder()
-      .withUrl('https://localhost:44305/cardhub')
+      .withUrl(environment.cardHubUri)
       .build();
     this._presenceHubConnection = new HubConnectionBuilder()
-      .withUrl('https://localhost:44305/presenceHub')
+      .withUrl(environment.presenceHubUri)
       .build();
   }
 
   private startConnection(): void {
-    this._cardHubConnection
+    this._cardHubConnection   
       .start()
       .then(() => {
         this.connectionIsEstablished = true;

@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUri: 'https://localhost:44305',
+  cardHubUri: 'https://localhost:44305/cardhub',
+  presenceHubUri: 'https://localhost:44305/presencehub'
 };
 
 /*

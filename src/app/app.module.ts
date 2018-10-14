@@ -14,8 +14,9 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './/app-routing.module';
 
-import { CardService, UserService } from './core/services/api.service';
+import { CardService, UserService, API_BASE_URL } from './core/services/api.service';
 import { HubService } from './core/services/hub.service';
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -27,6 +28,8 @@ import { ShellComponent } from './shell/shell.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UserTableComponent } from './core/components/user-table/user-table.component';
 import { PresenceComponent } from './pages/presence/presence.component';
+
+
 
 @NgModule({
   declarations: [
@@ -66,7 +69,8 @@ import { PresenceComponent } from './pages/presence/presence.component';
   providers: [
     CardService,
     UserService,
-    HubService
+    HubService,
+    { provide: API_BASE_URL, useValue: environment.apiUri }
   ],
   bootstrap: [AppComponent]
 })
