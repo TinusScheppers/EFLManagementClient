@@ -14,17 +14,17 @@ export class UserComponent implements OnInit {
     cards: Card[];
     scannedCard: Card;
     canSendMessage: Boolean;
-    message: string;
+    cardCode: string;
 
     @Input()
     set userId(userId: number) {
         this.GetUserData(userId);
-        this.message = '';
+        this.cardCode = '';
 
     }
 
     constructor(private userService: UserService, private cardService: CardService, private hubService: HubService) {
-        this.subscribeToEvents();  
+        this.subscribeToEvents();
     }
 
     ngOnInit() {
@@ -52,12 +52,12 @@ export class UserComponent implements OnInit {
     }
 
     private subscribeToEvents(): void {
-        this.hubService.connectionEstablished.subscribe(() => {
-            this.canSendMessage = true;
-        });
+        // this.hubService.connectionEstablished.subscribe(() => {
+        //     this.canSendMessage = true;
+        // });
 
-        this.hubService.messageReceived.subscribe((message) => {
-            this.message = message;
+        this.hubService.newCardReceived.subscribe((cardCode) => {
+            this.cardCode = cardCode;
         });
     }
 }

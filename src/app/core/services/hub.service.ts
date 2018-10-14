@@ -3,11 +3,15 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 @Injectable()
 export class HubService {
-  messageReceived = new EventEmitter<string>();
+  newCardReceived = new EventEmitter<string>();
+  newPresenceReceived = new EventEmitter<string>();
+
   connectionEstablished = new EventEmitter<Boolean>();
 
   private connectionIsEstablished = false;
-  private _hubConnection: HubConnection;
+  private _cardHubConnection: HubConnection;
+  private _presenceHubConnection: HubConnection;
+
 
   constructor() {
     this.createConnection();
@@ -16,18 +20,31 @@ export class HubService {
   }
 
   private createConnection() {
-    this._hubConnection = new HubConnectionBuilder()
-      // .withUrl('http://192.168.0.165/cardhub')
+    this._cardHubConnection = new HubConnectionBuilder()
       .withUrl('https://localhost:44305/cardhub')
+      .build();
+    this._presenceHubConnection = new HubConnectionBuilder()
+      .withUrl('https://localhost:44305/presenceHub')
       .build();
   }
 
   private startConnection(): void {
-    this._hubConnection
+    this._cardHubConnection
       .start()
       .then(() => {
         this.connectionIsEstablished = true;
-        console.log('Hub connection started');
+        console.log('Card Hub connection started');
+        this.connectionEstablished.emit(true);
+      })
+      .catch(err => {
+        console.log('Error while establishing connection, retrying...');
+        setTimeout(this.startConnection(), 5000);
+      });
+    this._presenceHubConnection
+      .start()
+      .then(() => {
+        this.connectionIsEstablished = true;
+        console.log('Presence Hub connection started');
         this.connectionEstablished.emit(true);
       })
       .catch(err => {
@@ -37,8 +54,11 @@ export class HubService {
   }
 
   private registerOnServerEvents(): void {
-    this._hubConnection.on('ReceiveMessage', (data: any) => {
-      this.messageReceived.emit(data);
+    this._cardHubConnection.on('newCardReceived', (data: any) => {
+      this.newCardReceived.emit(data);
+    });
+    this._presenceHubConnection.on('newPresenceReceived', (data: any) => {
+      this.newPresenceReceived.emit(data);
     });
   }
 }  
