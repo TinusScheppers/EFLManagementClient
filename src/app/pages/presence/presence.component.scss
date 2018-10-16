@@ -1,5 +1,23 @@
-mat-card {
-  height: 80%;
+.graph {
+  height: 100%;
   width: 95%;
   margin: 1% auto;
+}
+
+.presence {
+  height: 100%; //80%;
+  width: 50%; //95%;
+  margin: 1% auto;
+}
+
+.presence-page {
+  height: 100%;
+}
+
+.graph-div {
+  height: 50%;
+}
+
+.presence-div{
+  height: 50%;
 }

@@ -1,5 +1,25 @@
-<mat-card>
-  <mat-card-title>
-    Dag {{userName}}!
-  </mat-card-title>
-</mat-card>
+<section class="presence-page">
+  <div class="graph-div">
+    <mat-card class="graph">
+      <mat-card-title>
+        Placeholder for presence graph
+      </mat-card-title>
+    </mat-card>
+  </div>
+  <div class="presence-div">
+    <div class="user" *ngIf="userName">
+      <mat-card class="presence">
+        <mat-card-title>
+          Dag {{userName}}!
+        </mat-card-title>
+      </mat-card>
+    </div>
+    <div class="card" *ngIf="!userName">
+      <mat-card class="presence">
+        <mat-card-title>
+          ongekend
+        </mat-card-title>
+      </mat-card>
+    </div>
+  </div>
+</section>

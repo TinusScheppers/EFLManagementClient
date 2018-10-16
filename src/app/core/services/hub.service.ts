@@ -13,7 +13,7 @@ export class HubService {
   private _cardHubConnection: HubConnection;
   private _presenceHubConnection: HubConnection;
 
-
+  //TODO split hubs
   constructor() {
     this.createConnection();
     this.registerOnServerEvents();
