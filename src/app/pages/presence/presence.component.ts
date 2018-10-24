@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HubService } from '../../core/services/hub.service';
+import { PresenceHubService } from '../../core/services/presencehub.service';
 import { timer } from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ export class PresenceComponent implements OnInit {
   username: string;
   card: string;
 
-  constructor(private hubService: HubService) {
+  constructor(private hubService: PresenceHubService) {
     this.subscribeToEvents();
   }
 

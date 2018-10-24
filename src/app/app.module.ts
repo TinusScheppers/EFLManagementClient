@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './/app-routing.module';
 
 import { CardService, UserService, API_BASE_URL } from './core/services/api.service';
-import { HubService } from './core/services/hub.service';
+import { CardHubService } from './core/services/cardhub.service';
+import { PresenceHubService } from './core/services/presencehub.service';
 import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
@@ -69,7 +70,8 @@ import { PresenceComponent } from './pages/presence/presence.component';
   providers: [
     CardService,
     UserService,
-    HubService,
+    CardHubService,
+    PresenceHubService,
     { provide: API_BASE_URL, useValue: environment.apiUri }
   ],
   bootstrap: [AppComponent]

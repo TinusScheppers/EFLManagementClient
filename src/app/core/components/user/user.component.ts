@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { UserService, User, Card, CardService } from '../../../core/services/api.service';
-import { HubService } from '../../../core/services/hub.service';
+import { CardHubService } from '../../services/cardhub.service';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
 
     }
 
-    constructor(private userService: UserService, private cardService: CardService, private hubService: HubService) {
+    constructor(private userService: UserService, private cardService: CardService, private hubService: CardHubService) {
         this.subscribeToEvents();
     }
 
