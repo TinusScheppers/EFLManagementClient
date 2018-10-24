@@ -6,7 +6,7 @@
 
 .presence {
   height: 100%; //80%;
-  width: 30%; //95%;
+  width: 40%; //95%;
   margin: 1% auto;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .presence-div {
-  height: 50%;
+  height: 80%;
 }
 
 .user {
@@ -32,4 +32,5 @@
 
 .presence>mat-card-title {
   text-align: center;
+  font-size: 60px;
 }

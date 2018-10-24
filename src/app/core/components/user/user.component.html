@@ -3,20 +3,22 @@
     <!-- <mat-card-title-group> -->
     <div class="title">
       <mat-card-title>{{user.name}} {{user.surname}} </mat-card-title>
-      <mat-checkbox [(ngModel)]="user.isAdmin">{{user.isAdmin}}</mat-checkbox>
+      <!-- <mat-checkbox [(ngModel)]="user.isAdmin">{{user.isAdmin}}</mat-checkbox> -->
     </div>
     <mat-card-subtitle>
       <a class="email" href="mailto:{{user.email}}">{{user.email}}</a>
     </mat-card-subtitle>
     <mat-list dense class="cards">
       <mat-list-item *ngFor="let card of cards">
-        <span>{{card.cardCode}}</span>
-        <button mat-icon-button (click)="delete(card.cardId)">Delete</button>
+        <div class="card">
+          {{card.cardCode}}
+          <button class="deletebutton" (click)="delete(card.cardId)">X</button>
+        </div>
       </mat-list-item>
     </mat-list>
     <mat-form-field>
       <input matInput placeholder="Scan card" #scannedCard disabled="true" [value]="cardCode==undefined ? '' : cardCode">
     </mat-form-field>
-    <button mat-icon-button (click)="add(scannedCard.value)">Add</button>
+    <button mat-button (click)="add(scannedCard.value)">Add</button>
   </div>
 </mat-card>
