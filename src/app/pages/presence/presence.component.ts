@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HubService } from '../../core/services/hub.service';
-
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-presence',
@@ -9,7 +9,8 @@ import { HubService } from '../../core/services/hub.service';
   styleUrls: ['./presence.component.scss']
 })
 export class PresenceComponent implements OnInit {
-  userName: string;
+  username: string;
+  card: string;
 
   constructor(private hubService: HubService) {
     this.subscribeToEvents();
@@ -24,7 +25,8 @@ export class PresenceComponent implements OnInit {
     // });
 
     this.hubService.newPresenceReceived.subscribe((userName) => {
-      this.userName = userName;
+      this.username = userName;
+      timer(5000).subscribe(() => this.username = null);
     });
   }
 

@@ -7,15 +7,15 @@
     </mat-card>
   </div>
   <div class="presence-div">
-    <div class="user" *ngIf="userName">
-      <mat-card class="presence">
+    <div *ngIf="username">
+      <mat-card class="presence user">
         <mat-card-title>
-          Dag {{userName}}!
+          Dag {{username}}!
         </mat-card-title>
       </mat-card>
     </div>
-    <div class="card" *ngIf="!userName">
-      <mat-card class="presence">
+    <div *ngIf="card">
+      <mat-card class="presence card">
         <mat-card-title>
           ongekend
         </mat-card-title>

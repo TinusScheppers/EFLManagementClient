@@ -1,12 +1,12 @@
 .graph {
-  height: 100%;
+  height: 60%;
   width: 95%;
   margin: 1% auto;
 }
 
 .presence {
   height: 100%; //80%;
-  width: 50%; //95%;
+  width: 30%; //95%;
   margin: 1% auto;
 }
 
@@ -18,6 +18,18 @@
   height: 50%;
 }
 
-.presence-div{
+.presence-div {
   height: 50%;
+}
+
+.user {
+  background-color: #13a24b;
+}
+
+.card {
+  background-color: #f44336;
+}
+
+.presence>mat-card-title {
+  text-align: center;
 }

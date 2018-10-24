@@ -30,17 +30,17 @@ export class HubService {
   }
 
   private startConnection(): void {
-    this._cardHubConnection   
-      .start()
-      .then(() => {
-        this.connectionIsEstablished = true;
-        console.log('Card Hub connection started');
-        this.connectionEstablished.emit(true);
-      })
-      .catch(err => {
-        console.log('Error while establishing connection, retrying...');
-        setTimeout(this.startConnection(), 5000);
-      });
+    // this._cardHubConnection
+    //   .start()
+    //   .then(() => {
+    //     this.connectionIsEstablished = true;
+    //     console.log('Card Hub connection started');
+    //     this.connectionEstablished.emit(true);
+    //   })
+    //   .catch(err => {
+    //     console.log('Error while establishing connection, retrying...');
+    //     setTimeout(() => this.startConnection(), 5000);
+    //   });
     this._presenceHubConnection
       .start()
       .then(() => {
@@ -50,7 +50,7 @@ export class HubService {
       })
       .catch(err => {
         console.log('Error while establishing connection, retrying...');
-        setTimeout(this.startConnection(), 5000);
+        setTimeout(() => this.startConnection(), 5000);
       });
   }
 
