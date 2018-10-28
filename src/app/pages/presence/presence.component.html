@@ -1,9 +1,12 @@
 <section class="presence-page">
   <div class="graph-div">
     <mat-card class="graph">
-      <mat-card-title>
-        Placeholder for presence graph
-      </mat-card-title>
+      <mat-card-title> Aanwezigheden </mat-card-title>
+      <div *ngIf="chartData && chartLabels">
+        <canvas baseChart width="400" height="250" [chartType]="'line'" [datasets]="chartData" [labels]="chartLabels"
+          [options]="chartOptions" [legend]="false">
+        </canvas>
+      </div>
     </mat-card>
   </div>
   <div class="presence-div">

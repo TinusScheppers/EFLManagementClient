@@ -1,33 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-
-import { PresenceHubService } from '../../core/services/presencehub.service';
 import { timer } from 'rxjs';
 
+import { PresenceHubService } from '../../core/services/presencehub.service';
+
+import { PresenceService } from '../../core/services/api.service';
+
+
 @Component({
-  selector: 'app-presence',
-  templateUrl: './presence.component.html',
-  styleUrls: ['./presence.component.scss']
+    selector: 'app-presence',
+    templateUrl: './presence.component.html',
+    styleUrls: ['./presence.component.scss']
 })
 export class PresenceComponent implements OnInit {
-  username: string;
-  card: string;
+    username: string;
+    card: string;
 
-  constructor(private hubService: PresenceHubService) {
-    this.subscribeToEvents();
-  }
+    chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false
+    };
 
-  ngOnInit() {
-  }
+    chartData: { data: number[]; }[];
+    chartLabels = [];
 
-  private subscribeToEvents(): void {
-    // this.hubService.connectionEstablished.subscribe(() => {
-    //   this.canSendMessage = true;
-    // });
+    constructor(private hubService: PresenceHubService, private presenceService: PresenceService) {
+        this.subscribeToEvents();
+        this.getRecentPresences();
+    }
 
-    this.hubService.newPresenceReceived.subscribe((userName) => {
-      this.username = userName;
-      timer(5000).subscribe(() => this.username = null);
-    });
-  }
+    ngOnInit() {
+    }
 
+    private subscribeToEvents(): void {
+        // this.hubService.connectionEstablished.subscribe(() => {
+        //   this.canSendMessage = true;
+        // });
+
+        this.hubService.newPresenceReceived.subscribe((userName) => {
+            this.username = userName;
+            timer(5000).subscribe(() => this.username = null);
+        });
+    }
+
+    private getRecentPresences() {
+        this.presenceService.getPresences(12).subscribe((days) => {
+            this.chartData = [{ data: days.map(d => d.presences) }];
+            this.chartLabels = days.map(d => d.date.toDateString());
+        });
+    }
 }

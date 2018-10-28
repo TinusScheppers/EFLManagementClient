@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './/app-routing.module';
 
-import { CardService, UserService, API_BASE_URL } from './core/services/api.service';
+import { CardService, UserService, API_BASE_URL, PresenceService } from './core/services/api.service';
 import { CardHubService } from './core/services/cardhub.service';
 import { PresenceHubService } from './core/services/presencehub.service';
 import { environment } from '../environments/environment';
@@ -30,7 +30,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { UserTableComponent } from './core/components/user-table/user-table.component';
 import { PresenceComponent } from './pages/presence/presence.component';
 
-
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -64,12 +64,14 @@ import { PresenceComponent } from './pages/presence/presence.component';
     MatCardModule,
     MatCheckboxModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   providers: [
     CardService,
     UserService,
+    PresenceService,
     CardHubService,
     PresenceHubService,
     { provide: API_BASE_URL, useValue: environment.apiUri }
