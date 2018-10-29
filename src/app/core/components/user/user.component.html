@@ -17,7 +17,7 @@
       </mat-list-item>
     </mat-list>
     <mat-form-field>
-      <input matInput placeholder="Scan card" #scannedCard disabled="true" [value]="cardCode==undefined ? '' : cardCode">
+      <input matInput placeholder="Scan card" #scannedCard disabled="true" [(ngModel)]="scannedCardCode==undefined ? '' : scannedCardCode">
     </mat-form-field>
     <button mat-button (click)="add(scannedCard.value)">Add</button>
   </div>

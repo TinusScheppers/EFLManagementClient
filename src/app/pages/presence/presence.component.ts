@@ -19,9 +19,13 @@ export class PresenceComponent implements OnInit {
         responsive: true,
         maintainAspectRatio: false
     };
-
     chartData: { data: number[]; }[];
     chartLabels = [];
+    chartColors = [{ // https://stackoverflow.com/questions/39832874/how-do-i-change-the-color-for-ng2-charts
+        borderColor: ['#13a24b']
+    }];
+
+    dataUpdated: boolean;
 
     constructor(private hubService: PresenceHubService, private presenceService: PresenceService) {
         this.subscribeToEvents();
@@ -39,13 +43,16 @@ export class PresenceComponent implements OnInit {
         this.hubService.newPresenceReceived.subscribe((userName) => {
             this.username = userName;
             timer(5000).subscribe(() => this.username = null);
+            this.getRecentPresences();
         });
     }
 
     private getRecentPresences() {
         this.presenceService.getPresences(12).subscribe((days) => {
+            this.dataUpdated = false;
             this.chartData = [{ data: days.map(d => d.presences) }];
             this.chartLabels = days.map(d => d.date.toDateString());
+            this.dataUpdated = true;
         });
     }
 }

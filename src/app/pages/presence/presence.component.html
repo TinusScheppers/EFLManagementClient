@@ -2,9 +2,9 @@
   <div class="graph-div">
     <mat-card class="graph">
       <mat-card-title> Aanwezigheden </mat-card-title>
-      <div *ngIf="chartData && chartLabels">
+      <div *ngIf="dataUpdated">
         <canvas baseChart width="400" height="250" [chartType]="'line'" [datasets]="chartData" [labels]="chartLabels"
-          [options]="chartOptions" [legend]="false">
+          [options]="chartOptions" [legend]="false" [colors]="chartColors">
         </canvas>
       </div>
     </mat-card>

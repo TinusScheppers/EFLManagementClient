@@ -15,6 +15,8 @@ export class UserComponent implements OnInit {
     scannedCard: Card;
     canSendMessage: Boolean;
     cardCode: string;
+    scannedCardCode: string;
+
 
     @Input()
     set userId(userId: number) {
@@ -37,9 +39,10 @@ export class UserComponent implements OnInit {
             });
     }
 
-    add(scannedCardCode: string) {
-        this.cardService.linkCard(this.user.userId, scannedCardCode)
+    add() {
+        this.cardService.linkCard(this.user.userId, this.scannedCardCode)
             .subscribe(newCard => this.cards.push(newCard));
+        this.scannedCardCode = null;
     }
 
     private GetUserData(userId: number) {
@@ -57,7 +60,7 @@ export class UserComponent implements OnInit {
         // });
 
         this.hubService.newCardReceived.subscribe((cardCode) => {
-            this.cardCode = cardCode;
+            this.scannedCardCode = cardCode;
         });
     }
 }
