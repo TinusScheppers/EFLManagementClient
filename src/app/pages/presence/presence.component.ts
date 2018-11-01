@@ -22,7 +22,7 @@ export class PresenceComponent implements OnInit {
     chartData: { data: number[]; }[];
     chartLabels = [];
     chartColors = [{ // https://stackoverflow.com/questions/39832874/how-do-i-change-the-color-for-ng2-charts
-        borderColor: ['#13a24b']
+        backgroundColor: '#13a24b'
     }];
 
     dataUpdated: boolean;
