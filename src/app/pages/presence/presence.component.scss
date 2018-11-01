@@ -1,27 +1,38 @@
-.graph {
+.presence {
   height: 60%;
   width: 95%;
   margin: 1% auto;
+  padding: 10px;
 }
 
+.graph {
+  height: 100%;
+  width: 100%;
+  margin: 1% auto;
+  position: relative
+}
 
-.presence {
+.userlist {
+  height: 100%;
+  width: 100%;
+  margin: 1% auto;
+  position: relative
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+mat-card-title{
+  text-align: center;
+}
+
+.popup {
   height: 100%; //80%;
   width: 40%; //95%;
-  margin: 1% auto;
+  margin: 5% auto;
 }
-
-// .presence-page {
-//   height: 90%;
-// }
-
-// .graph-div {
-//   height: 50%;
-// }
-
-// .presence-div {
-//   height: 30%;
-// }
 
 .user {
   background-color: #13a24b;
@@ -31,7 +42,7 @@
   background-color: #f44336;
 }
 
-.presence>mat-card-title {
+.popup>mat-card-title {
   text-align: center;
   font-size: 60px;
 }

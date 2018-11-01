@@ -9,6 +9,9 @@
       <a class="email" href="mailto:{{user.email}}">{{user.email}}</a>
     </mat-card-subtitle>
     <mat-list dense class="cards">
+      <mat-card-subtitle>
+        Geregistreerde kaarten en badges:
+      </mat-card-subtitle>
       <mat-list-item *ngFor="let card of cards">
         <div class="card">
           {{card.cardCode}}

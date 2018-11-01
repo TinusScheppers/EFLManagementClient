@@ -4,8 +4,7 @@ import { DatePipe } from '@angular/common';
 
 import { PresenceHubService } from '../../core/services/presencehub.service';
 
-import { PresenceService } from '../../core/services/api.service';
-
+import { PresenceService, User } from '../../core/services/api.service';
 
 @Component({
     selector: 'app-presence',
@@ -15,6 +14,7 @@ import { PresenceService } from '../../core/services/api.service';
 export class PresenceComponent implements OnInit {
     username: string;
     card: string;
+    users: User[];
 
     chartOptions = {
         responsive: true,
@@ -40,7 +40,10 @@ export class PresenceComponent implements OnInit {
     }
 
     ngOnInit() {
-        timer(5000, 10000).subscribe(() => this.getRecentPresences());
+        timer(5000, 10000).subscribe(() => {
+            this.getRecentPresences();
+            this.getUsersForToday();
+        });
     }
 
     private subscribeToEvents(): void {
@@ -48,6 +51,7 @@ export class PresenceComponent implements OnInit {
             this.username = userName;
             timer(5000).subscribe(() => this.username = null);
             this.getRecentPresences();
+            this.getUsersForToday();
         });
 
         this.hubService.unknownCardReceived.subscribe((cardCode) => {
@@ -62,6 +66,12 @@ export class PresenceComponent implements OnInit {
             this.chartData = [{ data: days.map(d => d.presences) }];
             this.chartLabels = days.map(d => this.datePipe.transform(d.date, 'dd/MM/yyyy')); // format date daePipe issue: https://github.com/angular/angular/issues/15107
             this.dataUpdated = true;
+        });
+    }
+
+    private getUsersForToday() {
+        this.presenceService.getPresentUsersForDate(new Date()).subscribe((users) => {
+            this.users = users; 
         });
     }
 }

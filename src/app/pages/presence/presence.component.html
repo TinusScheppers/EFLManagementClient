@@ -1,24 +1,40 @@
 <section class="presence-page">
   <div class="graph-div">
-    <mat-card class="graph">
-      <mat-card-title> Aanwezigheden </mat-card-title>
-      <div *ngIf="dataUpdated">
-        <canvas baseChart width="400" height="250" [chartType]="'bar'" [datasets]="chartData" [labels]="chartLabels"
-          [options]="chartOptions" [legend]="false" [colors]="chartColors">
-        </canvas>
-      </div>
+    <mat-card class="presence">
+      <mat-grid-list cols="10" rowHeight="300px">
+        <mat-grid-tile colspan="1" *ngIf="users">
+          <mat-card class="userlist mat-elevation-z10">
+            <mat-card-title> Leden </mat-card-title>
+            <ul class="userslist">
+              <li *ngFor="let user of users">
+                {{user.name}}
+              </li>
+            </ul>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="9" *ngIf="dataUpdated">
+          <mat-card class="graph mat-elevation-z5">
+            <mat-card-title> Overzicht </mat-card-title>
+            <div>
+              <canvas baseChart width="400" height="250" [chartType]="'bar'" [datasets]="chartData" [labels]="chartLabels"
+                [options]="chartOptions" [legend]="false" [colors]="chartColors">
+              </canvas>
+            </div>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
     </mat-card>
   </div>
   <div class="presence-div">
     <div *ngIf="username">
-      <mat-card class="presence user">
+      <mat-card class="popup user">
         <mat-card-title>
           {{username}}
         </mat-card-title>
       </mat-card>
     </div>
     <div *ngIf="card">
-      <mat-card class="presence card">
+      <mat-card class="popup card">
         <mat-card-title>
           Kaart {{card}} onbekend!
         </mat-card-title>
