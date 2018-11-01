@@ -18,7 +18,14 @@ export class PresenceComponent implements OnInit {
 
     chartOptions = {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     };
     chartData: { data: number[]; }[];
     chartLabels = [];
@@ -33,13 +40,13 @@ export class PresenceComponent implements OnInit {
     }
 
     ngOnInit() {
-        timer(5000,10000).subscribe(() => this.getRecentPresences());
+        timer(5000, 10000).subscribe(() => this.getRecentPresences());
     }
 
     private subscribeToEvents(): void {
         this.hubService.newPresenceReceived.subscribe((userName) => {
             this.username = userName;
-            timer(5000).subscribe(() => this.username = null);            
+            timer(5000).subscribe(() => this.username = null);
             this.getRecentPresences();
         });
 
