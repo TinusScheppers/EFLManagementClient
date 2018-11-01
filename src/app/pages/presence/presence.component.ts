@@ -29,10 +29,10 @@ export class PresenceComponent implements OnInit {
 
     constructor(private hubService: PresenceHubService, private presenceService: PresenceService) {
         this.subscribeToEvents();
-        this.getRecentPresences();
     }
 
     ngOnInit() {
+        this.getRecentPresences();
     }
 
     private subscribeToEvents(): void {
@@ -44,6 +44,11 @@ export class PresenceComponent implements OnInit {
             this.username = userName;
             timer(5000).subscribe(() => this.username = null);
             this.getRecentPresences();
+        });
+
+        this.hubService.unknownCardReceived.subscribe((cardCode) => {
+            this.card = cardCode;
+            timer(5000).subscribe(() => this.card = null);
         });
     }
 

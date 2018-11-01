@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class PresenceHubService {
     newPresenceReceived = new EventEmitter<string>();
+    unknownCardReceived = new EventEmitter<string>();
 
     connectionEstablished = new EventEmitter<Boolean>();
 
@@ -37,10 +38,13 @@ export class PresenceHubService {
                 setTimeout(() => this.startConnection(), 5000);
             });
     }
-
+    
     private registerOnServerEvents(): void {
         this._presenceHubConnection.on('newPresenceReceived', (data: any) => {
             this.newPresenceReceived.emit(data);
+        });
+        this._presenceHubConnection.on('unknownCardReceived', (data: any) => {
+            this.unknownCardReceived.emit(data);
         });
     }
 }  
