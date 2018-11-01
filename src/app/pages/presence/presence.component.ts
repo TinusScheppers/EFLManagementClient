@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 import { PresenceHubService } from '../../core/services/presencehub.service';
 
@@ -27,22 +28,18 @@ export class PresenceComponent implements OnInit {
 
     dataUpdated: boolean;
 
-    constructor(private hubService: PresenceHubService, private presenceService: PresenceService) {
+    constructor(private hubService: PresenceHubService, private presenceService: PresenceService, private datePipe: DatePipe) {
         this.subscribeToEvents();
     }
 
     ngOnInit() {
-        this.getRecentPresences();
+        timer(5000,10000).subscribe(() => this.getRecentPresences());
     }
 
     private subscribeToEvents(): void {
-        // this.hubService.connectionEstablished.subscribe(() => {
-        //   this.canSendMessage = true;
-        // });
-
         this.hubService.newPresenceReceived.subscribe((userName) => {
             this.username = userName;
-            timer(5000).subscribe(() => this.username = null);
+            timer(5000).subscribe(() => this.username = null);            
             this.getRecentPresences();
         });
 
@@ -56,7 +53,7 @@ export class PresenceComponent implements OnInit {
         this.presenceService.getPresences(12).subscribe((days) => {
             this.dataUpdated = false;
             this.chartData = [{ data: days.map(d => d.presences) }];
-            this.chartLabels = days.map(d => d.date.toDateString());
+            this.chartLabels = days.map(d => this.datePipe.transform(d.date, 'dd/MM/yyyy')); // format date daePipe issue: https://github.com/angular/angular/issues/15107
             this.dataUpdated = true;
         });
     }
