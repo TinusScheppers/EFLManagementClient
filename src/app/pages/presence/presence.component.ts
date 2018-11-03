@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { timer } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 
 import { PresenceHubService } from '../../core/services/presencehub.service';
 
@@ -16,6 +17,7 @@ export class PresenceComponent implements OnInit {
     card: string;
     users: User[];
 
+    @ViewChild(BaseChartDirective) chart: BaseChartDirective;
     chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -27,10 +29,11 @@ export class PresenceComponent implements OnInit {
             }]
         }
     };
-    chartData: { data: number[]; }[];
-    chartLabels = [];
-    chartColors = [{ // https://stackoverflow.com/questions/39832874/how-do-i-change-the-color-for-ng2-charts
-        backgroundColor: '#13a24b'
+    chartData: any[] = [{ data: [] }];
+    chartLabels: string[] = [];
+    chartColors: any[] = [{ // https://stackoverflow.com/questions/39832874/how-do-i-change-the-color-for-ng2-charts
+        backgroundColor: '#13a24b',
+        borderColor: '#13a24b'
     }];
 
     dataUpdated: boolean;
@@ -40,6 +43,7 @@ export class PresenceComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.getRecentPresences();
         timer(5000, 10000).subscribe(() => {
             this.getRecentPresences();
             this.getUsersForToday();
@@ -62,16 +66,27 @@ export class PresenceComponent implements OnInit {
 
     private getRecentPresences() {
         this.presenceService.getPresences(12).subscribe((days) => {
-            this.dataUpdated = false;
+            this.chartLabels = days.map(d => this.datePipe.transform(d.date, 'dd/MM/yyyy')); // format date datePipe issue: https://github.com/angular/angular/issues/15107
             this.chartData = [{ data: days.map(d => d.presences) }];
-            this.chartLabels = days.map(d => this.datePipe.transform(d.date, 'dd/MM/yyyy')); // format date daePipe issue: https://github.com/angular/angular/issues/15107
-            this.dataUpdated = true;
+            this.refresh_chart();
+        });
+    }
+
+    //Needed for label refresh, not for data:
+    //https://stackoverflow.com/questions/42629819/ng2-charts-update-labels-and-data second answer
+    private refresh_chart() {
+        setTimeout(() => {
+            if (this.chart && this.chart.chart && this.chart.chart.config) {
+                this.chart.chart.config.data.labels = this.chartLabels;
+                this.chart.chart.config.data.color = this.chartColors;
+                this.chart.chart.update();
+            }
         });
     }
 
     private getUsersForToday() {
         this.presenceService.getPresentUsersForDate(new Date()).subscribe((users) => {
-            this.users = users; 
+            this.users = users;
         });
     }
 }

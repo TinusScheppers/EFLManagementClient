@@ -1,10 +1,10 @@
 <section class="presence-page">
   <div class="graph-div">
-    <mat-card class="presence">
+    <mat-card class="presence" >
       <mat-grid-list cols="10" rowHeight="300px">
         <mat-grid-tile colspan="1" *ngIf="users">
           <mat-card class="userlist mat-elevation-z10">
-            <mat-card-title> Leden </mat-card-title>
+            <mat-card-title> Vandaag </mat-card-title>
             <ul class="userslist">
               <li *ngFor="let user of users">
                 {{user.name}}
@@ -12,8 +12,8 @@
             </ul>
           </mat-card>
         </mat-grid-tile>
-        <mat-grid-tile colspan="9" *ngIf="dataUpdated">
-          <mat-card class="graph mat-elevation-z5">
+        <mat-grid-tile colspan="9">
+          <mat-card class="graph mat-elevation-z5" *ngIf="chartData">
             <mat-card-title> Overzicht </mat-card-title>
             <div>
               <canvas baseChart width="400" height="250" [chartType]="'bar'" [datasets]="chartData" [labels]="chartLabels"
