@@ -65,7 +65,7 @@ export class PresenceComponent implements OnInit {
     }
 
     private getRecentPresences() {
-        this.presenceService.getPresences(12).subscribe((days) => {
+        this.presenceService.getPresences(3).subscribe((days) => {
             this.chartLabels = days.map(d => this.datePipe.transform(d.date, 'dd/MM/yyyy')); // format date datePipe issue: https://github.com/angular/angular/issues/15107
             this.chartData = [{ data: days.map(d => d.presences) }];
             this.refresh_chart();
